@@ -3,19 +3,27 @@
 #include <vector> // Vector Container
 using namespace std;
 
+// Variable declaration
+int num_rows;
+int num_columns;
+vector<vector<string>> board; //2D Board that holds strings
 //Main function
 int main(){
-    // Variable decleartion
-    int num_rows;
-    int num_columns;
-    vector<vector<string>> board; //2D Board that holds strings
+    // Declaring GridGen function
+    int GridGen();
+
+    
 
     // Prompt user to input rows & columns
     cout << "Enter number of rows:" << endl;
     cin >> num_rows;
     cout << "Enter number of columns" << endl;
     cin >> num_columns;
-
+    GridGen();
+    return 0;
+} 
+  int GridGen(){
+  
     //Loops through each row and adds the columns to it
     for (int i = 0; i < num_rows; i++){
         vector<string> row; // vector for storing rows and columns
@@ -36,6 +44,6 @@ int main(){
         }
            cout << "\n"; //Print next line of board
     }
-    
-return 0;
+    return 0;
+
    }
