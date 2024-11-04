@@ -17,6 +17,7 @@ int SLCTSize();
 int GridGen();
 int Mazemaker();
 int RandomNumGen();
+vector<vector<int>> frontier;
 vector<vector<string>> board; // 2D Board that holds strings
 
 // Main function
@@ -117,4 +118,9 @@ int RandomNumGen() {
     }
 
     return 0;
+}
+
+add_frontier(i,j, board, frontier){
+    frontier[i][j] = board[i][j];
+
 }
