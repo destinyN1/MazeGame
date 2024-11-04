@@ -1,38 +1,41 @@
-#include <iostream>
+#include <iostream>// Standard c++ Libarary
 #include <string.h>
-#include <vector>
+#include <vector> // Vector Container
 using namespace std;
 
+//Main function
 int main(){
+    // Variable decleartion
     int num_rows;
     int num_columns;
-    vector<string>> board;
+    vector<vector<string>> board; //2D Board that holds strings
 
-
+    // Prompt user to input rows & columns
     cout << "Enter number of rows:" << endl;
     cin >> num_rows;
     cout << "Enter number of columns" << endl;
     cin >> num_columns;
 
+    //Loops through each row and adds the columns to it
     for (int i = 0; i < num_rows; i++){
-        vector<string> row;
+        vector<string> row; // vector for storing rows and columns
      for (int j = 0; j < num_columns; j++){
 
      
         if (j == 0)
-         row.push_back("|_|");
+         row.push_back("|_|"); //If on the first element of row vector 
         else
-        row.push_back ("_|");
+        row.push_back ("_|"); // If on any other element
     }
-    board.push_back(row);
+    board.push_back(row); // Add new row vector onto the Board
     }
-
+    //Prints the board
     for (int i = 0; i < num_rows; i++){
         for (int j = 0; j < num_columns; j++){
-            cout << board[i][j].c_str();
+            cout << board[i][j];
         }
-        cout << board[i][j].c_str();
+           cout << "\n"; //Print next line of board
     }
-    cout << "\n";
+    
 return 0;
    }
