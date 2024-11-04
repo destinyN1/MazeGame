@@ -45,9 +45,14 @@ int RandomSize() {
 
     for (int n = 0; n <= 1; n++) {
         value[n] = distr(gen);
-        cout << value[n] << "\n";
+        //cout << value[n] << "\n";
+        num_rows = value[0];
+        num_columns = value[1];
+        
+        
     }
-
+   
+GridGen();
     return 0;
 }
 
