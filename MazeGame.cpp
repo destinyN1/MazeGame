@@ -1,8 +1,9 @@
-#include <iostream>// Standard c++ Libarary
+#include <iostream> // Standard C++ Library
 #include <string.h>
 #include <vector> // Vector Container
 #include <random>
 #include <array>
+
 using namespace std;
 
 // Variable declaration
@@ -16,100 +17,99 @@ int SLCTSize();
 int GridGen();
 int Mazemaker();
 int RandomNumGen();
-vector<vector<string>> board; //2D Board that holds strings
-//Main function
-int main(){
+vector<vector<string>> board; // 2D Board that holds strings
+
+// Main function
+int main() {
     // Declaring GridGen function
-
     cout << "Do u want to make your own grid \n Press 1 for YES \n 2 for NO" << endl;
-        cin >> input;
+    cin >> input;
 
-     if (input == 1){
-      SLCTSize();
-     }
-     else if (input == 2){
+    if (input == 1) {
+        SLCTSize();
+    } else if (input == 2) {
         RandomSize();
-     }
-     else 
-     cout << "Please enter either 1 or 2:" << endl;
-     return 0;
-}     
+    } else {
+        cout << "Please enter either 1 or 2:" << endl;
+    }
 
- int RandomSize(){
-    //placeholders for grid sizes
-   int value[2];
-   random_device rc; 
-   mt19937 gen(rc());
-   uniform_int_distribution<>distr(0, (30)); // Max size computer can make the grid
-   for (int n = 0; n<=1; n++){
-    value[n] = distr(gen);
-    cout <<  value[n];
-    cout << "\n";
-   }
- return 0;
+    return 0;
+}
 
- }    
-    
-  int SLCTSize(){
+int RandomSize() {
+    // Placeholders for grid sizes
+    int value[2];
+    random_device rc;
+    mt19937 gen(rc());
+    uniform_int_distribution<> distr(0, 30); // Max size computer can make the grid
 
+    for (int n = 0; n <= 1; n++) {
+        value[n] = distr(gen);
+        cout << value[n] << "\n";
+    }
+
+    return 0;
+}
+
+int SLCTSize() {
     // Prompt user to input rows & columns
     cout << "Enter number of rows:" << endl;
     cin >> num_rows;
-    cout << "Enter number of columns" << endl;
+    cout << "Enter number of columns:" << endl;
     cin >> num_columns;
     GridGen();
     return 0;
-} 
-
-int GridGen(){
-
-
-    //Loops through each row and adds the columns to it
-    for (int i = 0; i < num_rows; i++){
-        vector<string> row; // vector for storing rows and columns
-     for (int j = 0; j < num_columns; j++){
-
-     
-        if (j == 0)
-         row.push_back("|_|"); //If on the first element of row vector 
-        else
-        row.push_back ("_|"); // If on any other element
-    }
-    board.push_back(row); // Add new row vector onto the Board
-    }
-    //Prints the board
-    for (int i = 0; i < num_rows; i++){
-        for (int j = 0; j < num_columns; j++){
-            cout << board[i][j];
-        }
-           cout << "\n"; //Print next line of board
-    }
-    //If grid area bigger than 8 then generate a random number
-    if ((num_columns*num_rows>=9)){
-     RandomNumGen();
-
-   }
-   else 
-   return 0;
 }
-//Funtion to generate another maze (might be used later)
-int Mazemaker(){
-    for (int i = 0; i < num_rows; i++){
-        for (int j = 0; j < num_columns; j++){
+
+int GridGen() {
+    // Loops through each row and adds the columns to it
+    for (int i = 0; i < num_rows; i++) {
+        vector<string> row; // Vector for storing rows and columns
+        for (int j = 0; j < num_columns; j++) {
+            if (j == 0)
+                row.push_back("|_|"); // If on the first element of row vector
+            else
+                row.push_back("_|"); // If on any other element
+        }
+        board.push_back(row); // Add new row vector onto the Board
+    }
+
+    // Prints the board
+    for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_columns; j++) {
             cout << board[i][j];
         }
-           cout << "\n"; //Print next line of board
+        cout << "\n"; // Print next line of board
     }
-    
+
+    // If grid area bigger than 8, then generate a random number
+    if ((num_columns * num_rows >= 9)) {
+        RandomNumGen();
+    }
+
     return 0;
 }
 
-int RandomNumGen (){
-   random_device rd; 
-   mt19937 gen(rd());
-   uniform_int_distribution<>distr(0, (num_columns*num_rows));
-   for (int n = 0; n<2; n++){
-    cout<<  "random number" << n+1 << ":" << distr(gen) << endl;
-   }
-return 0;
+// Function to generate another maze (might be used later)
+int Mazemaker() {
+    for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_columns; j++) {
+            cout << board[i][j];
+        }
+        cout << "\n"; // Print next line of board
+    }
+
+    return 0;
+}
+
+int RandomNumGen() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(0, (num_columns * num_rows));
+
+    for (int n = 0; n < 2; n++) {
+        cout << "random number " << n + 1 << ": " << distr(gen) << endl;
+    }
+
+    return 0;
 }
