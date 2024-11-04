@@ -2,7 +2,7 @@
 #include <string.h>
 #include <vector> // Vector Container
 #include <random>
-
+#include <array>
 using namespace std;
 
 // Variable declaration
@@ -10,13 +10,47 @@ int num_rows;
 int num_columns;
 int i;
 int j;
+int input;
+int RandomSize();
+int SLCTSize();
+int GridGen();
+int Mazemaker();
+int RandomNumGen();
 vector<vector<string>> board; //2D Board that holds strings
 //Main function
 int main(){
     // Declaring GridGen function
-    int GridGen();
 
+    cout << "Do u want to make your own grid \n Press 1 for YES \n 2 for NO" << endl;
+        cin >> input;
+
+     if (input == 1){
+      SLCTSize();
+     }
+     else if (input == 2){
+        RandomSize();
+     }
+     else 
+     cout << "Please enter either 1 or 2:" << endl;
+     return 0;
+}     
+
+ int RandomSize(){
+    //placeholders for grid sizes
+   int value[2];
+   random_device rc; 
+   mt19937 gen(rc());
+   uniform_int_distribution<>distr(0, (30)); // Max size computer can make the grid
+   for (int n = 0; n<=1; n++){
+    value[n] = distr(gen);
+    cout <<  value[n];
+    cout << "\n";
+   }
+ return 0;
+
+ }    
     
+  int SLCTSize(){
 
     // Prompt user to input rows & columns
     cout << "Enter number of rows:" << endl;
@@ -26,9 +60,10 @@ int main(){
     GridGen();
     return 0;
 } 
+
 int GridGen(){
-int MazeMaker();
-int RandomGen();
+
+
     //Loops through each row and adds the columns to it
     for (int i = 0; i < num_rows; i++){
         vector<string> row; // vector for storing rows and columns
@@ -51,7 +86,7 @@ int RandomGen();
     }
     //If grid area bigger than 8 then generate a random number
     if ((num_columns*num_rows>=9)){
-     RandomGen();
+     RandomNumGen();
 
    }
    else 
@@ -69,12 +104,12 @@ int Mazemaker(){
     return 0;
 }
 
-int RandomGen (){
-   random_device rd;
+int RandomNumGen (){
+   random_device rd; 
    mt19937 gen(rd());
    uniform_int_distribution<>distr(0, (num_columns*num_rows));
-   for (int n = 0; n<1; n++){
-    cout<<  "random number: "<< distr(gen) << endl;
+   for (int n = 0; n<2; n++){
+    cout<<  "random number" << n+1 << ":" << distr(gen) << endl;
    }
 return 0;
 }
