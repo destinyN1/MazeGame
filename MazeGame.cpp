@@ -17,7 +17,9 @@ int SLCTSize();
 int GridGen();
 int Mazemaker();
 int RandomNumGen();
-vector<vector<int>> frontier;
+vector<vector<string>> add_frontier();
+
+vector<vector<string>> frontier;
 vector<vector<string>> board; // 2D Board that holds strings
 
 // Main function
@@ -49,10 +51,9 @@ int RandomSize() {
         //cout << value[n] << "\n";
         num_rows = value[0];
         num_columns = value[1];
-        
-        
+
     }
-   
+
 GridGen();
     return 0;
 }
@@ -73,9 +74,9 @@ int GridGen() {
         vector<string> row; // Vector for storing rows and columns
         for (int j = 0; j < num_columns; j++) {
             if (j == 0)
-                row.push_back("|_|"); // If on the first element of row vector
+                row.pushback("||"); // If on the first element of row vector
             else
-                row.push_back("_|"); // If on any other element
+                row.pushback("|"); // If on any other element
         }
         board.push_back(row); // Add new row vector onto the Board
     }
@@ -116,11 +117,17 @@ int RandomNumGen() {
     for (int n = 0; n < 2; n++) {
         cout << "random number " << n + 1 << ": " << distr(gen) << endl;
     }
-
+add_frontier();
     return 0;
 }
-
-add_frontier(i,j, board, frontier){
+// Need to add another function to actually print out frontier, this is just inittialiseing the object 
+ vector<vector<string>> add_frontier( int i,int j, const vector<vector<string>>board, vector<vector<string>>frontier){
     frontier[i][j] = board[i][j];
+    for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_columns; j++) {
+            cout << frontier[i][j];
+        }
+        cout << "\n"; // Print next line of board
+    }
 
 }
