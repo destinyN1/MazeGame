@@ -18,8 +18,8 @@ int GridGen();
 int Mazemaker();
 int RandomNumGen();
 vector<vector<string>> add_frontier();
-
-vector<vector<string>> frontier;
+//vector<vector<string>> frontier();
+vector<vector<string>> local_frontier;
 vector<vector<string>> board; // 2D Board that holds strings
 
 // Main function
@@ -74,9 +74,9 @@ int GridGen() {
         vector<string> row; // Vector for storing rows and columns
         for (int j = 0; j < num_columns; j++) {
             if (j == 0)
-                row.pushback("||"); // If on the first element of row vector
+                row.push_back("|_|"); // If on the first element of row vector
             else
-                row.pushback("|"); // If on any other element
+                row.push_back("_|"); // If on any other element
         }
         board.push_back(row); // Add new row vector onto the Board
     }
@@ -88,6 +88,9 @@ int GridGen() {
         }
         cout << "\n"; // Print next line of board
     }
+    //Dimentions of randomly generated grid
+    cout << "Rows: "<< num_rows << endl; 
+    cout << "Columns: " << num_columns << endl;
 
     // If grid area bigger than 8, then generate a random number
     if ((num_columns * num_rows >= 9)) {
@@ -97,37 +100,31 @@ int GridGen() {
     return 0;
 }
 
-// Function to generate another maze (might be used later)
-int Mazemaker() {
-    for (int i = 0; i < num_rows; i++) {
-        for (int j = 0; j < num_columns; j++) {
-            cout << board[i][j];
-        }
-        cout << "\n"; // Print next line of board
-    }
-
-    return 0;
-}
 
 int RandomNumGen() {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distr(0, (num_columns * num_rows));
+    uniform_int_distribution<> row_distr(0, (num_rows -1));
+    uniform_int_distribution<> column_distr(0, (num_columns - 1));
+    
+    //selects position coordinates of the board
+    cout  << row_distr(gen);
+    cout << column_distr(gen);
 
-    for (int n = 0; n < 2; n++) {
-        cout << "random number " << n + 1 << ": " << distr(gen) << endl;
-    }
-add_frontier();
     return 0;
 }
-// Need to add another function to actually print out frontier, this is just inittialiseing the object 
- vector<vector<string>> add_frontier( int i,int j, const vector<vector<string>>board, vector<vector<string>>frontier){
-    frontier[i][j] = board[i][j];
-    for (int i = 0; i < num_rows; i++) {
-        for (int j = 0; j < num_columns; j++) {
-            cout << frontier[i][j];
-        }
-        cout << "\n"; // Print next line of board
-    }
 
+ vector<vector<string>> add_frontier( int i,int j, const vector<vector<string>>board, vector<vector<string>>local_frontier){ //frontier with reference to 2d board
+    vector<vector<string>> local_frontier(num_rows, vector<string>(num_columns)); 
+
+      local_frontier[i][j] = board[i][j];
+       for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_columns; j++) {
+            cout << local_frontier[i][j];
+        }
+        cout << "\n";
+    }
+    return local_frontier;
 }
+ 
+ 
